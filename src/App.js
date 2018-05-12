@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Resizable from 're-resizable';
+
 import Header from './components/Header';
 import Command from './components/Command';
 import './App.css';
@@ -15,10 +17,12 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App" onClick={this.autoFocusOnCommand} >
-        <Header />
-        <Command />
-      </div>
+      <Resizable defaultSize={{ width: 320, height: 200 }} >
+        <div className="App" onClick={this.autoFocusOnCommand} >
+          <Header />
+          <Command />
+        </div>
+      </Resizable>
     );
   }
 }

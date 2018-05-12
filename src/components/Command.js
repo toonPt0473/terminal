@@ -47,10 +47,10 @@ export class Command extends Component {
     const { data } = this.state;
     const newCommandAndData = (
       <div>
-        <div>
+        <div className="command-item" >
           {commandName}  {commandLine.textContent}{command || ''}
         </div>
-        <div>
+        <div className="command-item" >
           {response === '' ? help : response}
         </div>
       </div>
