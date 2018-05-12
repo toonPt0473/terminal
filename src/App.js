@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-import Resizable from 're-resizable';
-
-import Header from './components/Header';
-import Command from './components/Command';
+import uuid from 'uuid';
+import Terminal from './components/Terminal';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  state = {
+    terminals: [<Terminal key={uuid()} />],
   }
-  autoFocusOnCommand = () => {
-    if (document.getElementById('editable')) {
-      document.getElementById('editable').focus();
-    }
-  }
+  createNewTerminal = () => this.setState({ terminals: [...this.state.terminals, <Terminal key={uuid()} />] })
+  renderTerminal = () => this.state.terminals.map((terminal) => terminal)
   render() {
     return (
-      <Resizable defaultSize={{ width: 320, height: 200 }} >
-        <div className="App" onClick={this.autoFocusOnCommand} >
-          <Header />
-          <Command />
-        </div>
-      </Resizable>
+      <div
+        style={{ position: 'relative', minWidth: '100%', minHeight: '100vh' }}
+      >
+        {this.renderTerminal()}
+      </div>
     );
   }
 }

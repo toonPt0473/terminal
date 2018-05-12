@@ -7,7 +7,7 @@ export class Command extends Component {
     data: [],
   }
   componentDidMount() {
-    document.getElementById('editable').focus();
+    document.getElementById(this.props.randomId).focus();
   }
   componentWillUpdate() {
     window.scrollBy(0, 50);
@@ -15,7 +15,7 @@ export class Command extends Component {
 
   onPressEnter =(e) => {
     if (e.which === 13) {
-      const command = document.getElementById('editable').textContent;
+      const command = document.getElementById(this.props.randomId).textContent;
       this.checkCommand(command);
     }
   }
@@ -25,7 +25,7 @@ export class Command extends Component {
     }
   }
   onClear = () => {
-    const commandLine = document.getElementById('editable');
+    const commandLine = document.getElementById(this.props.randomId);
     commandLine.innerHTML = '';
     return this.setState({ data: [] });
   }
@@ -42,7 +42,7 @@ export class Command extends Component {
     }
   }
   pushNewData = (command, response) => {
-    const commandLine = document.getElementById('editable');
+    const commandLine = document.getElementById(this.props.randomId);
     const help = `${commandLine.textContent}: command not found. Please type "--help"`;
     const { data } = this.state;
     const newCommandAndData = (
@@ -92,7 +92,8 @@ export class Command extends Component {
             contentEditable
             onKeyDown={this.onKeyDown}
             onKeyUp={this.onKeyUp}
-            id="editable"
+            className="editable"
+            id={this.props.randomId}
           >
           </span>
         </div>
