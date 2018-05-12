@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
-import Command from './components/Command'
+import Header from './components/Header';
+import Command from './components/Command';
 import './App.css';
 
 class App extends Component {
@@ -9,8 +9,8 @@ class App extends Component {
     this.state = {};
   }
   autoFocusOnCommand = () => {
-    if (document.getElementById("editable")) {
-      document.getElementById("editable").focus();
+    if (document.getElementById('editable')) {
+      document.getElementById('editable').focus();
     }
   }
   render() {
