@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
+import Cowsay from 'react-cowsay';
 
 const commandName = 'guest@Paitoon\'s Resume ~ $';
+const allCommand = [
+  {
+    name: 'name',
+    detail: 'show fullname',
+  },
+  {
+    name: 'profile',
+    detail: 'when call this operateion, Will show my profile',
+  },
+  {
+    name: 'git',
+    detail: 'show my git',
+  },
+  {
+    name: 'skill',
+    detail: 'develop skills rating',
+  },
+  {
+    name: 'framework',
+    detail: 'framework that i ever userd',
+  },
+  {
+    name: 'contact',
+    detail: 'my contact',
+  },
+];
 export class Command extends Component {
   state = {
     ctrl: false,
@@ -65,12 +92,21 @@ export class Command extends Component {
       return this.onClear();
     }
     if (command === 'name') {
-      response = 'Paitoon Arayasatjapong';
+      const options = ['b', 'd', 'g', 'p', 's', 't', 'w', 'y'];
+      const randomOption = options[Math.floor(Math.random() * options.length)];
+      const cowSayDisplay = { [randomOption]: true };
+      response = <Cowsay {...cowSayDisplay} >My name is Paitoon Arayasatjapong</Cowsay>;
     }
     if (command === '--help' || command === '-help' || command === '-h' || command === '--h') {
       response = (
         <div style={{ marginLeft: 10 }} >
           Operation command :
+          {allCommand.map((cmd) => (
+            <div style={{ marginLeft: 20, display: 'flex' }} key={cmd.detail} >
+              <div style={{ flex: 2 }} >{cmd.name}</div>
+              <div style={{ flex: 6 }} >{cmd.detail}</div>
+            </div>
+          ))}
         </div>
       );
     }
@@ -84,7 +120,7 @@ export class Command extends Component {
 
   render() {
     return (
-      <div id="scroll-bottom" >
+      <div id="scroll-bottom" style={{ paddingLeft: 3 }} >
         {this.renderData()}
         <div>
           {commandName}
@@ -94,8 +130,7 @@ export class Command extends Component {
             onKeyUp={this.onKeyUp}
             className="editable"
             id={this.props.randomId}
-          >
-          </span>
+          />
         </div>
       </div>
     );

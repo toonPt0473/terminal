@@ -1683,6 +1683,12 @@ cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
     parse-json "^2.2.0"
     require-from-string "^1.1.0"
 
+cowsay-browser@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/cowsay-browser/-/cowsay-browser-1.1.8.tgz#afa446e80a0873fe740069face7c08133d13b870"
+  dependencies:
+    optimist "~0.6.1"
+
 create-ecdh@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.0.tgz#888c723596cdf7612f6498233eebd7a35301737d"
@@ -4881,7 +4887,7 @@ opn@^5.1.0:
   dependencies:
     is-wsl "^1.1.0"
 
-optimist@^0.6.1:
+optimist@^0.6.1, optimist@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
   dependencies:
@@ -5621,6 +5627,12 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
 re-resizable@^4.4.8:
   version "4.4.8"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.4.8.tgz#1c7eedfd9b9ed1f83b3adfa7a97cda76881e4e57"
+
+react-cowsay@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-cowsay/-/react-cowsay-0.1.0.tgz#2b19168ba20c524d183f8d71cfe6427c78898bed"
+  dependencies:
+    cowsay-browser "^1.1.8"
 
 react-dev-utils@^5.0.1:
   version "5.0.1"
