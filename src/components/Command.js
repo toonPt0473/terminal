@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cowsay from 'react-cowsay';
+import _ from 'lodash';
 
 const commandName = 'guest@Paitoon\'s Resume ~ $';
 const allCommand = [
@@ -24,14 +25,29 @@ const allCommand = [
     detail: 'framework that i ever userd',
   },
   {
+    name: 'work',
+    detail: 'my work experience',
+  },
+  {
     name: 'contact',
     detail: 'my contact',
+  },
+  {
+    name: 'max',
+    detail: 'show the fullscreen',
+  },
+  {
+    name: 'min',
+    detail: 'show minimize screen (can resize and dragable)',
+  },
+  {
+    name: 'clear',
+    detail: 'clear all data on terminal',
   },
 ];
 export class Command extends Component {
   state = {
     ctrl: false,
-    data: [],
   }
   componentDidMount() {
     document.getElementById(this.props.randomId).focus();
@@ -54,7 +70,8 @@ export class Command extends Component {
   onClear = () => {
     const commandLine = document.getElementById(this.props.randomId);
     commandLine.innerHTML = '';
-    return this.setState({ data: [] });
+    // return this.setState({ data: [] });
+    return this.props.onChange();
   }
   onKeyDown = (e) => {
     if (e.which === 17) {
@@ -68,10 +85,10 @@ export class Command extends Component {
       this.setState({ ctrl: false });
     }
   }
-  pushNewData = (command, response) => {
+  pushNewData = async (command, response) => {
     const commandLine = document.getElementById(this.props.randomId);
     const help = `${commandLine.textContent}: command not found. Please type "--help"`;
-    const { data } = this.state;
+    // const { data } = this.state;
     const newCommandAndData = (
       <div>
         <div className="command-item" >
@@ -82,12 +99,23 @@ export class Command extends Component {
         </div>
       </div>
     );
-    data.push(newCommandAndData);
-    this.setState({ data });
+    // data.push(newCommandAndData);
+    // await this.setState({ data });
+    if (this.props.onChange) {
+      this.props.onChange(newCommandAndData);
+    }
     commandLine.innerHTML = '';
   }
-  checkCommand = async (command) => {
+  checkCommand = async (input) => {
     let response = '';
+    let command = input;
+
+    _.times(2, () => {
+      if (command[0] === '-') {
+        command = command.substring(1);
+      }
+    });
+
     if (command === 'clear') {
       return this.onClear();
     }
@@ -97,7 +125,19 @@ export class Command extends Component {
       const cowSayDisplay = { [randomOption]: true };
       response = <Cowsay {...cowSayDisplay} >My name is Paitoon Arayasatjapong</Cowsay>;
     }
-    if (command === '--help' || command === '-help' || command === '-h' || command === '--h') {
+    if (command === 'max') {
+      this.props.onFullScreen();
+      response = ' ';
+    }
+    if (command === 'min') {
+      this.props.onMinimize();
+      response = ' ';
+    }
+    if (command === 'profile') {
+      this.props.onFullScreen();
+      response = 'profile';
+    }
+    if (command === 'help' || command === 'h') {
       response = (
         <div style={{ marginLeft: 10 }} >
           Operation command :
@@ -112,7 +152,7 @@ export class Command extends Component {
     }
     return this.pushNewData(null, response);
   }
-  renderData = () => this.state.data.map((item, index) => (
+  renderData = () => this.props.data.map((item, index) => (
     <div key={index.toString()} className="command-item" >
       {item}
     </div>
