@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Cowsay from 'react-cowsay';
 import _ from 'lodash';
 
+import Skills from './Skills';
+
 const commandName = 'guest@Paitoon\'s Resume ~ $';
 const allCommand = [
   {
@@ -136,6 +138,9 @@ export class Command extends Component {
     if (command === 'profile') {
       this.props.onFullScreen();
       response = 'profile';
+    }
+    if (command === 'skill') {
+      response = <Skills />;
     }
     if (command === 'help' || command === 'h') {
       response = (
