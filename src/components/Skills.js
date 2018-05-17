@@ -15,6 +15,7 @@ export class Skill extends Component { // eslint-disable-line
         <ProgressBar width="350px" percent={40} name="React-Native" />
         <ProgressBar width="350px" percent={45} name="NodeJS" />
         <ProgressBar width="350px" percent={35} name="Mongo" />
+        <ProgressBar width="350px" percent={50} name="Git" />
         <ProgressBar width="350px" percent={65} name="Self-learning" />
         <ProgressBar width="350px" percent={80} name="Comnunicate with team" />
       </div>

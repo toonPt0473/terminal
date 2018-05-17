@@ -24,16 +24,6 @@ class Terminal extends Component {
     },
   }
   randomId = uuid();
-  terminalBody = (
-    <div className="App" onClick={this.autoFocusOnCommand} >
-      <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
-      <Command
-        randomId={this.randomId}
-        onChange={(value) => value ? this.setState({ data: [...this.state.data, value] }) : this.setState({ data: [] })}
-        data={this.state.data}
-      />
-    </div>
-  );
   autoFocusOnCommand = () => {
     if (document.getElementById(this.randomId)) {
       document.getElementById(this.randomId).focus();
@@ -45,7 +35,7 @@ class Terminal extends Component {
     this.setState({ controlledPosition: { x, y } });
   }
   renderTerminalBody = () => (
-    <div className="App" onClick={this.autoFocusOnCommand} >
+    <div className="App" onClick={this.autoFocusOnCommand} id="terminal" >
       <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
       <Command
         randomId={this.randomId}

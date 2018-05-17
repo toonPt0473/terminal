@@ -13,14 +13,14 @@ export class ProgressBar extends Component {
       }
     `;
     const ProgressBarBg = styled.div`
-      background-color: #777;
+      background-color: rgba(100,100,100,0.4);
       border-radius: 8px;
       padding: 2px;
       width: 100%;
       position: relative;
     `;
     const Progress = styled.div`
-      background-color: white;
+      background-color: #ccc;
       height: 5px;
       border-radius: 5px;
       animation: 3s ${Move} normal forwards ease-in-out;
