@@ -23,6 +23,7 @@ export class ProgressBar extends Component {
       background-color: #ccc;
       height: 5px;
       border-radius: 5px;
+      width: ${this.props.percent}%;
       animation: 3s ${Move} normal forwards ease-in-out;
     `;
     const Name = styled.p`

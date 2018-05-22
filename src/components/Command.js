@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import Cowsay from 'react-cowsay';
 import _ from 'lodash';
+import styled from 'styled-components';
 
 import Skills from './Skills';
 import Git from './Git';
 import Profile from './Profile';
 import Work from './Work';
 import Contact from './Contact';
+// import Framework from './Framework';
 import { commandName, allCommand, cowsayOptions } from './constant';
+
+const CommandContainer = styled.div`
+  padding-left: 3px;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+`;
 
 export class Command extends Component {
   state = {
     ctrl: false,
-    commandHistory: [],
-    indexHistory: 0,
+    // commandHistory: [],
+    indexHistory: this.props.commandHistory.length,
   }
   componentDidMount() {
     this.commandLine = document.getElementById(this.props.randomId);
@@ -46,14 +55,14 @@ export class Command extends Component {
       this.setState({ ctrl: true });
     }
     if (e.which === 38) {
-      this.commandLine.textContent = this.state.commandHistory[this.state.indexHistory - 1];
+      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory - 1];
       if (this.state.indexHistory > 0) {
         this.setState({ indexHistory: this.state.indexHistory - 1 });
       }
     }
     if (e.which === 40) {
-      this.commandLine.textContent = this.state.commandHistory[this.state.indexHistory + 1];
-      if (this.state.indexHistory < this.state.commandHistory.length) {
+      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory + 1];
+      if (this.state.indexHistory < this.props.commandHistory.length) {
         this.setState({ indexHistory: this.state.indexHistory + 1 });
       }
     }
@@ -69,10 +78,7 @@ export class Command extends Component {
   pushNewData = (command, response) => {
     const help = `${this.commandLine.textContent}: command not found. Please type "--help"`;
     if (this.commandLine.textContent) {
-      this.setState({
-        commandHistory: [...this.state.commandHistory, this.commandLine.textContent],
-        indexHistory: this.state.commandHistory.length + 1,
-      });
+      this.setState({ indexHistory: this.props.commandHistory.length + 1 });
     }
     const newCommandAndData = (
       <div>
@@ -85,7 +91,7 @@ export class Command extends Component {
       </div>
     );
     if (this.props.onChange) {
-      this.props.onChange(newCommandAndData);
+      this.props.onChange({ newCommandAndData, commandHistory: this.commandLine.textContent });
     }
     this.commandLine.innerHTML = '';
   }
@@ -124,7 +130,10 @@ export class Command extends Component {
       response = <Skills />;
     }
     if (command === 'git') {
-      response = <Git />;
+      response = <Git type="git" />;
+    }
+    if (command === 'framework') {
+      response = <Git type="framework" />;
     }
     if (command === 'profile') {
       response = <Profile />;
@@ -158,7 +167,7 @@ export class Command extends Component {
 
   render() {
     return (
-      <div id="scroll-bottom" style={{ paddingLeft: 3 }} >
+      <CommandContainer id="scroll-bottom" >
         {this.renderData()}
         <div>
           {commandName}
@@ -170,7 +179,7 @@ export class Command extends Component {
             id={this.props.randomId}
           />
         </div>
-      </div>
+      </CommandContainer>
     );
   }
 }

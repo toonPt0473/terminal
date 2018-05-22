@@ -10,7 +10,7 @@ import Command from './Command';
 
 const FullScreen = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;
 class Terminal extends Component {
   state = {
@@ -18,6 +18,7 @@ class Terminal extends Component {
     height: 400,
     fullScreen: false,
     data: [],
+    commandHistory: [],
     controlledPosition: {
       x: (window.innerWidth / 2) - 300,
       y: (window.innerHeight / 2) - 200,
@@ -39,10 +40,16 @@ class Terminal extends Component {
       <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
       <Command
         randomId={this.randomId}
-        onChange={(value) => value ? this.setState({ data: [...this.state.data, value] }) : this.setState({ data: [] })}
+        onChange={(value) => value
+          ? this.setState({
+            data: [...this.state.data, value.newCommandAndData],
+            commandHistory: value.commandHistory ? [...this.state.commandHistory, value.commandHistory] : this.state.commandHistory,
+          })
+          : this.setState({ data: [] })}
         data={this.state.data}
         onFullScreen={(() => this.setState({ fullScreen: true }))}
         onMinimize={() => this.setState({ fullScreen: false })}
+        commandHistory={this.state.commandHistory}
       />
     </div>
   )
@@ -50,14 +57,6 @@ class Terminal extends Component {
     if (this.state.fullScreen) {
       return (
         <FullScreen>
-          {/* <div className="App" onClick={this.autoFocusOnCommand} >
-            <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
-            <Command
-              randomId={this.randomId}
-              onChange={(value) => value ? this.setState({ data: [...this.state.data, value] }) : this.setState({ data: [] })}
-              data={this.state.data}
-            />
-          </div> */}
           {this.renderTerminalBody()}
         </FullScreen>
       );
