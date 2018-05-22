@@ -87,6 +87,11 @@ const options = {
       image: 'https://bulma.io/images/bulma-logo.png',
       name: 'Bulma',
     },
+    {
+      link: 'https://docs.docker.com/compose/',
+      image: 'https://cdn-images-1.medium.com/max/453/0*lQHBTNViWBhPsTtF.',
+      name: 'Docker-compose',
+    },
   ],
 };
 
