@@ -8,7 +8,6 @@ import Git from './Git';
 import Profile from './Profile';
 import Work from './Work';
 import Contact from './Contact';
-// import Framework from './Framework';
 import { commandName, allCommand, cowsayOptions } from './constant';
 
 const CommandContainer = styled.div`
@@ -21,7 +20,6 @@ const CommandContainer = styled.div`
 export class Command extends Component {
   state = {
     ctrl: false,
-    // commandHistory: [],
     indexHistory: this.props.commandHistory.length,
   }
   componentDidMount() {
@@ -31,8 +29,11 @@ export class Command extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  componentDidUpdate() {
-    document.getElementById('terminal').scrollBy(0, 50);
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      const objDiv = document.getElementById('scroll-bottom');
+      document.getElementById('terminal').scrollBy(0, objDiv.scrollHeight);
+    }
   }
 
   onPressEnter =(e) => {
@@ -43,7 +44,6 @@ export class Command extends Component {
   onCtrlC = (e) => {
     if (this.state.ctrl && e.which === 67) {
       this.pushNewData('^C', ' ');
-      // document.getElementById('terminal').scrollBy(0, 500);
     }
   }
   onClear = () => {

@@ -96,8 +96,8 @@ const options = {
 };
 
 export class Git extends Component { // eslint-disable-line
-  renderGrid = (type) => options[type].map((item) => (
-    <a href={item.link} target="_blank" style={{ marginRight: 20, textDecoration: 'none' }} >
+  renderGrid = (type) => options[type].map((item, index) => (
+    <a href={item.link} target="_blank" style={{ marginRight: 20, textDecoration: 'none' }} key={index.toString()}>
       <ImageContainer style={{ backgroundImage: `url(${item.image})` }} />
       <TextContainer>{item.name}</TextContainer>
     </a>
