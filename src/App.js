@@ -7,6 +7,9 @@ class App extends Component {
   state = {
     terminals: [<Terminal key={uuid()} />],
   }
+  componentDidMount() {
+    fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}`);
+  }
   createNewTerminal = () => this.setState({ terminals: [...this.state.terminals, <Terminal key={uuid()} />] })
   renderTerminal = () => this.state.terminals.map((terminal) => terminal)
   render() {
