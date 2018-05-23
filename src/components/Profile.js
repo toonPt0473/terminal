@@ -21,8 +21,9 @@ const Label = styled.p`
 const FlexSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 20px;
-  min-width: 816px;
+  min-width: 400px;
   box-sizing: 'border-box';
 `;
 const TextProfile = styled.p`
@@ -34,16 +35,17 @@ class About extends Component { // eslint-disable-line
   render() {
     return (
       <FlexSpaceBetween>
-        <div>
+        <div style={{ marginRight: 40 }} >
           <TextProfile>Fullname: Paitoon Arayasatjapong</TextProfile>
           <TextProfile>Sex: male</TextProfile>
           <TextProfile>Birthdate: 23 Aug 2531</TextProfile>
           <TextProfile>Education: ComEngineer At KKU <strong style={{ color: 'red' }} >(Drop-out)</strong></TextProfile>
         </div>
         <div>
-          <TextProfile>Address : 336/18 Hua Ror Sub-district, Muang District, Khonkaen</TextProfile>
+          <TextProfile>Address : 336/18 Nai muang Sub-district, Muang District, Khonkaen</TextProfile>
           <TextProfile>Gitlab: <a href="https://gitlab.com/ttoonoott" target="_blank" style={{ color: 'white' }} >https://gitlab.com/ttoonoott</a></TextProfile>
           <TextProfile>Github: <a href="https://github.com/toonPt0473" target="_blank" style={{ color: 'white' }} >https://github.com/toonPt0473</a> </TextProfile>
+          <TextProfile>Expect salary: 25000 THB</TextProfile>
         </div>
       </FlexSpaceBetween>
     );
