@@ -5,10 +5,10 @@ import './App.css';
 
 class App extends Component {
   state = {
-    terminals: [<Terminal key={uuid()} />],
+    // terminals: [<Terminal key={uuid()} />],
   }
   componentDidMount() {
-    fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}`);
+    // fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}`);
   }
   createNewTerminal = () => this.setState({ terminals: [...this.state.terminals, <Terminal key={uuid()} />] })
   renderTerminal = () => this.state.terminals.map((terminal) => terminal)
@@ -17,7 +17,8 @@ class App extends Component {
       <div
         style={{ position: 'absolute', width: '100%', height: '100vh' }}
       >
-        {this.renderTerminal()}
+        {/* {this.renderTerminal()} */}
+        <Terminal key={uuid()} />
       </div>
     );
   }

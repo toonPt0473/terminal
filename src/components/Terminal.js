@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 import uuid from 'uuid';
 import styled from 'styled-components';
 
+import MinimizeTerminal from './MinimizeTerminal';
 import Header from './/Header';
 import Command from './Command';
 // import '../App.css';
@@ -14,6 +15,7 @@ const FullScreen = styled.div`
 `;
 class Terminal extends Component {
   state = {
+    show: true,
     width: 600,
     height: 400,
     fullScreen: false,
@@ -37,7 +39,7 @@ class Terminal extends Component {
   }
   renderTerminalBody = () => (
     <div className="App" onClick={this.autoFocusOnCommand} id="terminal" >
-      <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
+      <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} hide={() => this.setState({ show: false })} />
       <Command
         randomId={this.randomId}
         onChange={(value) => value
@@ -54,6 +56,14 @@ class Terminal extends Component {
     </div>
   )
   render() {
+    if (!this.state.show) {
+      return (
+        <MinimizeTerminal
+          show={() => this.setState({ show: true })}
+          fullScreen={() => this.setState({ fullScreen: true, show: true })}
+        />
+      );
+    }
     if (this.state.fullScreen) {
       return (
         <FullScreen>
@@ -69,7 +79,6 @@ class Terminal extends Component {
         position={this.state.controlledPosition}
       >
         <Resizable
-          // defaultSize={{ width: 600, height: 400 }}
           size={{ width: this.state.width, height: this.state.height }}
           onResizeStop={(e, direction, ref, d) => {
             this.setState({
@@ -78,14 +87,6 @@ class Terminal extends Component {
             });
           }}
         >
-          {/* <div className="App" onClick={this.autoFocusOnCommand}>
-            <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} />
-            <Command
-              randomId={this.randomId}
-              onChange={(value) => value ? this.setState({ data: [...this.state.data, value] }) : this.setState({ data: [] })}
-              data={this.state.data}
-            />
-          </div> */}
           {this.renderTerminalBody()}
         </Resizable>
       </Draggable>
