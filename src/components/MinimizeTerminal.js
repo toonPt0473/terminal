@@ -14,6 +14,8 @@ const Minimize = styled.div`
   padding-left: 5px;
   font-size: 14px;
   z-index: 10;
+  border-top-left-radius:4px;
+  border-top-right-radius: 4px;
 `;
 
 const MinimizeTerminal = (props) => (
