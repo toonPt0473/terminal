@@ -18,7 +18,7 @@ const contact = [
   },
   {
     iconClass: 'fas fa-mobile-alt fa-2x',
-    text: 'Mobile: 090-9476455',
+    text: 'Mobile: 083-1444100, 080-1427301',
   },
   {
     iconClass: 'far fa-envelope fa-2x',

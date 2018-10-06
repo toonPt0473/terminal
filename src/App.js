@@ -7,8 +7,17 @@ class App extends Component {
   state = {
     // terminals: [<Terminal key={uuid()} />],
   }
-  componentDidMount() {
-    fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}`);
+  async componentDidMount() {
+    try {
+      const respone = await fetch('https://api.ipify.org/?format=json');
+      const result = await respone.json();
+      const { ip } = result;
+      fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}/${ip}`);
+      // fetch(`http://localhost:8080/resume/${window.innerWidth}/${ip}`);
+    } catch (error) {
+      console.log(error);
+      fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}/cannot_get_ip`);
+    }
   }
   createNewTerminal = () => this.setState({ terminals: [...this.state.terminals, <Terminal key={uuid()} />] })
   renderTerminal = () => this.state.terminals.map((terminal) => terminal)

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Minimize = styled.div`
-  width: 450px;
+  width: 360px;
   position: fixed ;
   bottom: 0 ;
   right: 0 ;

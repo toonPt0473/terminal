@@ -26,6 +26,18 @@ class Terminal extends Component {
       y: (window.innerHeight / 2) - 200,
     },
   }
+  componentDidMount() {
+    if (screen.width < 600) {
+      this.setState({ // eslint-disable-line
+        width: screen.width,
+        height: 300,
+        controlledPosition: {
+          x: 0,
+          y: (screen.height / 2) - 150,
+        },
+      });
+    }
+  }
   randomId = uuid();
   autoFocusOnCommand = () => {
     if (document.getElementById(this.randomId)) {
