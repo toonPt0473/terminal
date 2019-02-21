@@ -2,7 +2,7 @@
 
 ```sh
 git clone https://github.com/toonPt0473/terminal
-cd my-responsive-resume
+cd terminal
 npm install
 npm start
 ```
