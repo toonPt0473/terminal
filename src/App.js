@@ -15,7 +15,6 @@ class App extends Component {
       fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}/${ip}`);
       // fetch(`http://localhost:8080/resume/${window.innerWidth}/${ip}`);
     } catch (error) {
-      console.log(error);
       fetch(`https://shielded-beyond-76649.herokuapp.com/resume/${window.innerWidth}/cannot_get_ip`);
     }
   }

@@ -64,7 +64,7 @@ const options = {
     },
     {
       link: 'https://jquery.com/',
-      image: 'http://massagedarmani.com/wp-content/uploads/2016/08/jquery-logo.png',
+      image: 'https://cdn-images-1.medium.com/max/1600/0*g3ns8QALNBBH7CBA.',
       name: 'Jquery',
     },
     {
@@ -91,6 +91,11 @@ const options = {
       link: 'https://docs.docker.com/compose/',
       image: 'https://cdn-images-1.medium.com/max/453/0*lQHBTNViWBhPsTtF.',
       name: 'Docker-compose',
+    },
+    {
+      link: 'https://graphql.org/',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1024px-GraphQL_Logo.svg.png',
+      name: 'Graphql',
     },
   ],
 };

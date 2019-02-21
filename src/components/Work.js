@@ -4,7 +4,8 @@ export class Work extends Component { // eslint-disable-line
   render() {
     return (
       <div>
-        Now i&#39;m working at Witsawa Corporation Co.,Ltd
+        <p>01/2018 - 10/2018: Web developer at <b>Witsawa Corporation Co.,Ltd</b></p>
+        <p>11/2018 - present: Web developer at <b>Baania (Thailand) Company Limited</b></p>
       </div>
     );
   }
