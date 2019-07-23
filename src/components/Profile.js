@@ -45,7 +45,7 @@ class About extends Component { // eslint-disable-line
           <TextProfile>Address : 336/18 Nai muang Sub-district, Muang District, Khonkaen</TextProfile>
           <TextProfile>Gitlab: <a href="https://gitlab.com/ttoonoott" target="_blank" style={{ color: 'white' }} >https://gitlab.com/ttoonoott</a></TextProfile>
           <TextProfile>Github: <a href="https://github.com/toonPt0473" target="_blank" style={{ color: 'white' }} >https://github.com/toonPt0473</a> </TextProfile>
-          <TextProfile>Expect salary:  35000 - 60000 THB</TextProfile>
+          <TextProfile>Expect salary:  40000 - 60000 THB</TextProfile>
         </div>
       </FlexSpaceBetween>
     );
