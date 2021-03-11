@@ -37,7 +37,7 @@
     "re-resizable": "^4.4.8",
     "react": "^16.3.1",
     "react-cowsay": "^0.1.0",
-    "react-dev-utils": "^5.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.3.1",
     "react-draggable": "^3.0.5",
     "resolve": "1.6.0",
