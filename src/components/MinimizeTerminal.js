@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Minimize = styled.div`
   width: 360px;
@@ -16,7 +16,7 @@ const Minimize = styled.div`
   z-index: 10;
   border-top-left-radius:4px;
   border-top-right-radius: 4px;
-`;
+`
 
 const MinimizeTerminal = (props) => (
   <Minimize onDoubleClick={props.fullScreen} >
@@ -25,6 +25,6 @@ const MinimizeTerminal = (props) => (
     <div className="header-button fullscreen" onClick={props.fullScreen} ><p>&#x25A1;</p></div>
     <p style={{ marginLeft: 5 }} >Terminal</p>
   </Minimize>
-);
+)
 
-export default MinimizeTerminal;
+export default MinimizeTerminal

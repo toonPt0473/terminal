@@ -1,5 +1,5 @@
-export const commandName = 'guest@Paitoon\'s Resume ~ $';
-export const cowsayOptions = ['b', 'd', 'g', 'p', 's', 't', 'w', 'y'];
+export const commandName = (ip) => `${ip}@Paitoon's Resume ~ $`
+export const cowsayOptions = ['b', 'd', 'g', 'p', 's', 't', 'w', 'y']
 export const allCommand = [
   {
     name: 'name',
@@ -41,4 +41,4 @@ export const allCommand = [
     name: 'clear',
     detail: 'clear all data on terminal',
   },
-];
+]

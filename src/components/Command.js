@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import Cowsay from 'react-cowsay';
-import _ from 'lodash';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import Cowsay from 'react-cowsay'
+import _ from 'lodash'
+import styled from 'styled-components'
 
-import Skills from './Skills';
-import Git from './Git';
-import Profile from './Profile';
-import Work from './Work';
-import Contact from './Contact';
-import { commandName, allCommand, cowsayOptions } from './constant';
+import Skills from './Skills'
+import Git from './Git'
+import Profile from './Profile'
+import Work from './Work'
+import Contact from './Contact'
+import { commandName, allCommand, cowsayOptions } from './constant'
 
 const CommandContainer = styled.div`
   padding-left: 3px;
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-`;
+`
 
 export class Command extends Component {
   state = {
@@ -23,126 +23,126 @@ export class Command extends Component {
     indexHistory: this.props.commandHistory.length,
   }
   componentDidMount() {
-    this.commandLine = document.getElementById(this.props.randomId);
-    document.getElementById(this.props.randomId).focus();
+    this.commandLine = document.getElementById(this.props.randomId)
+    document.getElementById(this.props.randomId).focus()
   }
   shouldComponentUpdate() {
-    return true;
+    return true
   }
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
-      const objDiv = document.getElementById('scroll-bottom');
-      document.getElementById('terminal').scrollBy(0, objDiv.scrollHeight);
+      const objDiv = document.getElementById('scroll-bottom')
+      document.getElementById('terminal').scrollBy(0, objDiv.scrollHeight)
     }
   }
 
   onPressEnter =(e) => {
     if (e.which === 13) {
-      this.checkCommand(this.commandLine.textContent);
+      this.checkCommand(this.commandLine.textContent)
     }
   }
   onCtrlC = (e) => {
     if (this.state.ctrl && e.which === 67) {
-      this.pushNewData('^C', ' ');
+      this.pushNewData('^C', ' ')
     }
   }
   onClear = () => {
-    this.commandLine.innerHTML = '';
-    return this.props.onChange();
+    this.commandLine.innerHTML = ''
+    return this.props.onChange()
   }
   onKeyDown = (e) => {
     if (e.which === 17) {
-      this.setState({ ctrl: true });
+      this.setState({ ctrl: true })
     }
     if (e.which === 38) {
-      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory - 1];
+      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory - 1]
       if (this.state.indexHistory > 0) {
-        this.setState({ indexHistory: this.state.indexHistory - 1 });
+        this.setState({ indexHistory: this.state.indexHistory - 1 })
       }
     }
     if (e.which === 40) {
-      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory + 1];
+      this.commandLine.textContent = this.props.commandHistory[this.state.indexHistory + 1]
       if (this.state.indexHistory < this.props.commandHistory.length) {
-        this.setState({ indexHistory: this.state.indexHistory + 1 });
+        this.setState({ indexHistory: this.state.indexHistory + 1 })
       }
     }
-    this.onCtrlC(e);
-    this.onPressEnter(e);
+    this.onCtrlC(e)
+    this.onPressEnter(e)
   }
   onKeyUp = (e) => {
     if (e.which === 17) {
-      this.setState({ ctrl: false });
+      this.setState({ ctrl: false })
     }
   }
 
   pushNewData = (command, response) => {
-    const help = `${this.commandLine.textContent}: command not found. Please type "--help"`;
+    const help = `${this.commandLine.textContent}: command not found. Please type "--help"`
     if (this.commandLine.textContent) {
-      this.setState({ indexHistory: this.props.commandHistory.length + 1 });
+      this.setState({ indexHistory: this.props.commandHistory.length + 1 })
     }
     const newCommandAndData = (
       <div>
         <div className="command-item" >
-          {commandName}  {this.commandLine.textContent}{command || ''}
+          {commandName(this.props.ip)}  {this.commandLine.textContent}{command || ''}
         </div>
         <div className="command-item" >
           {!response ? help : response}
         </div>
       </div>
-    );
+    )
     if (this.props.onChange) {
-      this.props.onChange({ newCommandAndData, commandHistory: this.commandLine.textContent });
+      this.props.onChange({ newCommandAndData, commandHistory: this.commandLine.textContent })
     }
-    this.commandLine.innerHTML = '';
+    this.commandLine.innerHTML = ''
   }
   checkCommand = (input) => {
-    let response = false;
-    let command = input.toLowerCase();
+    let response = false
+    let command = input.toLowerCase()
     _.times(2, () => {
       if (command[0] === '-') {
-        command = command.substring(1);
+        command = command.substring(1)
       }
-    });
+    })
     if (command === '') {
-      response = ' ';
+      response = ' '
     }
     if (command === 'clear') {
-      return this.onClear();
+      return this.onClear()
     }
     if (command === 'name') {
-      const randomOption = cowsayOptions[Math.floor(Math.random() * cowsayOptions.length)];
-      const cowSayDisplay = { [randomOption]: true };
-      response = <Cowsay {...cowSayDisplay} >My name is Paitoon Arayasatjapong</Cowsay>;
+      const randomOption = cowsayOptions[Math.floor(Math.random() * cowsayOptions.length)]
+      const cowSayDisplay = { [randomOption]: true }
+      response = <Cowsay {...cowSayDisplay} >My name is Paitoon Arayasatjapong</Cowsay>
     }
     if (command === 'max') {
-      this.props.onFullScreen();
-      response = ' ';
+      this.props.onFullScreen()
+      response = ' '
     }
     if (command === 'min') {
-      this.props.onMinimize();
-      response = ' ';
+      this.props.onMinimize()
+      response = ' '
     }
     if (command === 'profile') {
-      this.props.onFullScreen();
-      response = 'profile';
+      this.props.onFullScreen()
+      response = 'profile'
     }
     if (command === 'skill') {
-      response = <Skills />;
+      response = <Skills />
     }
     if (command === 'git') {
-      response = <Git type="git" />;
+      response = <Git type="git" />
     }
     if (command === 'framework') {
-      response = <Git type="framework" />;
+      response = <Git type="framework" />
     }
     if (command === 'profile') {
-      response = <Profile />;
+      response = <Profile />
     }
     if (command === 'work') {
-      response = <Work />;
+      response = <Work />
     }
     if (command === 'contact') {
-      response = <Contact />;
+      response = <Contact />
     }
     if (command === 'help' || command === 'h') {
       response = (
@@ -155,9 +155,9 @@ export class Command extends Component {
             </div>
           ))}
         </div>
-      );
+      )
     }
-    return this.pushNewData(null, response);
+    return this.pushNewData(null, response)
   }
   renderData = () => this.props.data.map((item, index) => (
     <div key={index.toString()} className="command-item" >
@@ -170,7 +170,7 @@ export class Command extends Component {
       <CommandContainer id="scroll-bottom" >
         {this.renderData()}
         <div>
-          {commandName}
+          {commandName(this.props.ip)}
           <span
             contentEditable
             onKeyDown={this.onKeyDown}
@@ -180,8 +180,8 @@ export class Command extends Component {
           />
         </div>
       </CommandContainer>
-    );
+    )
   }
 }
 
-export default Command;
+export default Command

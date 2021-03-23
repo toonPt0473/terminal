@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 export class Header extends Component {
   state = {}
@@ -10,8 +10,8 @@ export class Header extends Component {
         <div className="header-button fullscreen" onClick={this.props.fullScreen} ><p>&#x25A1;</p></div>
         <p style={{ marginLeft: 5 }} >Terminal</p>
       </div>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

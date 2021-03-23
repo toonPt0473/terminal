@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import Resizable from 're-resizable';
-import Draggable from 'react-draggable';
-import uuid from 'uuid';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import Resizable from 're-resizable'
+import Draggable from 'react-draggable'
+import uuid from 'uuid'
+import styled from 'styled-components'
 
-import MinimizeTerminal from './MinimizeTerminal';
-import Header from './/Header';
-import Command from './Command';
+import MinimizeTerminal from './MinimizeTerminal'
+import Header from './/Header'
+import Command from './Command'
 // import '../App.css';
 
 const FullScreen = styled.div`
   width: 100%;
   height: 100vh;
-`;
+`
 class Terminal extends Component {
   state = {
     show: true,
@@ -35,24 +35,25 @@ class Terminal extends Component {
           x: 0,
           y: (screen.height / 2) - 150,
         },
-      });
+      })
     }
   }
   randomId = uuid();
   autoFocusOnCommand = () => {
     if (document.getElementById(this.randomId)) {
-      document.getElementById(this.randomId).focus();
+      document.getElementById(this.randomId).focus()
     }
     // this.setState({ fullScreen: !this.state.fullScreen });
   }
   controlledDrag = (e, position) => {
-    const { x, y } = position;
-    this.setState({ controlledPosition: { x, y } });
+    const { x, y } = position
+    this.setState({ controlledPosition: { x, y } })
   }
   renderTerminalBody = () => (
     <div className="App" onClick={this.autoFocusOnCommand} id="terminal" >
       <Header fullScreen={() => this.setState({ fullScreen: !this.state.fullScreen })} hide={() => this.setState({ show: false })} />
       <Command
+        ip={this.props.ip}
         randomId={this.randomId}
         onChange={(value) => value
           ? this.setState({
@@ -74,14 +75,14 @@ class Terminal extends Component {
           show={() => this.setState({ show: true })}
           fullScreen={() => this.setState({ fullScreen: true, show: true })}
         />
-      );
+      )
     }
     if (this.state.fullScreen) {
       return (
         <FullScreen>
           {this.renderTerminalBody()}
         </FullScreen>
-      );
+      )
     }
     return (
       <Draggable
@@ -96,14 +97,14 @@ class Terminal extends Component {
             this.setState({
               width: this.state.width + d.width,
               height: this.state.height + d.height,
-            });
+            })
           }}
         >
           {this.renderTerminalBody()}
         </Resizable>
       </Draggable>
-    );
+    )
   }
 }
 
-export default Terminal;
+export default Terminal
